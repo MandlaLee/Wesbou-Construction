@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wesbou Construction — Phalaborwa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ----- reset & base ----- */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #e8e6e1;
+      --ink: #1c1c1c;
+      --accent: #ff5a00;
+      --paper: #f3f1ec;
+      --rule: #c5c2bb;
+      --radius: 2px;
+      --font-display: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
+      --font-body: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 16px;
+      --space-4: 24px;
+      --space-5: 32px;
+      --space-6: 48px;
+      --space-7: 64px;
+      --space-8: 96px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      line-height: 1.1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      width: min(1200px, 92vw);
+      margin-inline: auto;
+    }
+
+    /* ----- utility ----- */
+    .tag {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 2px;
+      margin-bottom: var(--space-3);
+    }
+
+    .rule-heavy {
+      border: 0;
+      border-top: 4px solid var(--ink);
+      margin: 0;
+    }
+
+    .rule-thin {
+      border: 0;
+      border-top: 1px solid var(--rule);
+      margin: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--bg);
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+      padding: 12px 22px;
+      min-height: 44px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 2px solid var(--ink);
+    }
+
+    .btn-outline:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    /* ----- header ----- */
+    .site-header {
+      background: var(--ink);
+      color: var(--bg);
+      padding: var(--space-3) 0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .logo small {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-list a {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
+      transition: opacity 0.15s, border-color 0.15s;
+    }
+
+    .nav-list a:hover {
+      opacity: 1;
+      border-bottom-color: var(--accent);
+    }
+
+    .header-cta {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--accent);
+      color: #fff;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 10px 18px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .header-cta:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    /* ----- hero ----- */
+    .hero {
+      padding: var(--space-8) 0 var(--space-7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 119px,
+        var(--rule) 119px,
+        var(--rule) 120px
+      );
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: var(--space-6);
+      align-items: end;
+    }
+
+    .hero h1 {
+      font-size: clamp(52px, 9vw, 108px);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 0.92;
+      max-width: 12ch;
+      text-transform: uppercase;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.65;
+      max-width: 52ch;
+      margin-top: var(--space-4);
+      color: #3a3a3a;
+    }
+
+    .hero-side {
+      border-left: 4px solid var(--accent);
+      padding-left: var(--space-4);
+      margin-bottom: 10px;
+    }
+
+    .hero-side dl {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .hero-side dt {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .hero-side dd {
+      font-size: 15px;
+      line-height: 1.45;
+      margin: 2px 0 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-5);
+    }
+
+    /* ----- ticker / band ----- */
+    .band {
+      background: var(--ink);
+      color: var(--bg);
+      padding: var(--space-3) 0;
+      overflow: hidden;
+      border-top: 3px solid var(--accent);
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .band-inner {
+      display: flex;
+      gap: var(--space-6);
+      white-space: nowrap;
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      animation: slide 28s linear infinite;
+    }
+
+    .band-inner span {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .band-inner span::before {
+      content: '//';
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .band-inner { animation: none; }
+    }
+
+    /* ----- section base ----- */
+    .section {
+      padding: var(--space-7) 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+      flex-wrap: wrap;
+    }
+
+    .section-head h2 {
+      font-size: clamp(34px, 5vw, 54px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      max-width: 16ch;
+    }
+
+    .section-head p {
+      max-width: 40ch;
+      font-size: 16px;
+      color: #4a4a4a;
+      margin-top: var(--space-2);
+    }
+
+    /* ----- services (asymmetric strip) ----- */
+    .services {
+      background: var(--paper);
+    }
+
+    .service-strip {
+      display: grid;
+      grid-template-columns: 60px 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .service-item {
+      display: contents;
+    }
+
+    .service-item > * {
+      padding: var(--space-4) var(--space-3);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .service-num {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding-right: var(--space-3);
+    }
+
+    .service-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1.15;
+    }
+
+    .service-desc {
+      font-size: 16px;
+      line-height: 1.55;
+      color: #3a3a3a;
+      border-left: 2px solid var(--rule);
+      padding-left: var(--space-4);
+    }
+
+    /* ----- proof / stats ----- */
+    .proof {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .proof .section-head h2 {
+      color: var(--bg);
+    }
+
+    .proof .section-head p {
+      color: #b0aca5;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+      margin-top: var(--space-5);
+    }
+
+    .stat {
+      border-top: 3px solid var(--accent);
+      padding-top: var(--space-3);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(48px, 7vw, 80px);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    .stat span {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: var(--space-2);
+      color: #b0aca5;
+    }
+
+    .quote-block {
+      margin-top: var(--space-6);
+      max-width: 62ch;
+      border-left: 4px solid var(--accent);
+      padding-left: var(--space-4);
+    }
+
+    .quote-block blockquote {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: 0.01em;
+    }
+
+    .quote-block cite {
+      display: block;
+      font-family: var(--font-body);
+      font-style: normal;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: var(--space-3);
+    }
+
+    /* ----- about / process ----- */
+    .about {
+      background: var(--bg);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-7);
+      align-items: start;
+    }
+
+    .about-text h2 {
+      font-size: clamp(34px, 5vw, 54px);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: var(--space-4);
+    }
+
+    .about-text p {
+      max-width: 62ch;
+      margin-bottom: var(--space-3);
+      font-size: 17px;
+    }
+
+    .process-list {
+      list-style: none;
+      display: grid;
+      gap: var(--space-4);
+      counter-reset: step;
+    }
+
+    .process-list li {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: var(--space-3);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .process-list li::before {
+      content: counter(step, decimal-leading-zero);
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .process-list h3 {
+      font-size: 21px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-bottom: 4px;
+    }
+
+    .process-list p {
+      font-size: 15px;
+      line-height: 1.55;
+      color: #3a3a3a;
+    }
+
+    /* ----- contact ----- */
+    .contact {
+      background: var(--paper);
+      border-top: 4px solid var(--ink);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-7);
+      align-items: start;
+    }
+
+    .contact-info h2 {
+      font-size: clamp(34px, 5vw, 54px);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: var(--space-4);
+    }
+
+    .contact-details {
+      display: grid;
+      gap: var(--space-4);
+      margin-top: var(--space-4);
+    }
+
+    .contact-details dt {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+
+    .contact-details dd {
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .contact-details dd a {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 1px;
+    }
+
+    .contact-details dd a:hover {
+      color: var(--accent);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .contact-form label {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 16px;
+      padding: 12px 14px;
+      background: #fff;
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+      color: var(--ink);
+      min-height: 44px;
+    }
+
+    .contact-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: 3px solid var(--accent);
+      outline-offset: 1px;
+    }
+
+    .contact-form .btn {
+      justify-self: start;
+      margin-top: var(--space-2);
+    }
+
+    /* ----- footer ----- */
+    .site-footer {
+      background: var(--ink);
+      color: #c5c0b8;
+      padding: var(--space-6) 0 var(--space-4);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: var(--space-6);
+      margin-bottom: var(--space-5);
+    }
+
+    .footer-brand p {
+      max-width: 36ch;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-top: var(--space-3);
+    }
+
+    .footer-brand .logo {
+      font-size: 22px;
+      color: var(--bg);
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-display);
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-3);
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .footer-col a {
+      font-size: 15px;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+      transition: border-color 0.15s;
+    }
+
+    .footer-col a:hover {
+      border-bottom-color: var(--accent);
+      color: var(--bg);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #3a3a3a;
+      padding-top: var(--space-4);
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: #8a857d;
+    }
+
+    /* ----- responsive ----- */
+    @media (max-width: 900px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-5);
+      }
+
+      .hero h1 {
+        max-width: 100%;
+      }
+
+      .hero-side {
+        border-left: 0;
+        border-top: 4px solid var(--accent);
+        padding-left: 0;
+        padding-top: var(--space-3);
+        margin-bottom: 0;
+      }
+
+      .service-strip {
+        grid-template-columns: 40px 1fr;
+      }
+
+      .service-desc {
+        grid-column: 2 / -1;
+        border-left: 0;
+        padding-left: 0;
+        border-top: 1px dashed var(--rule);
+        padding-top: var(--space-3);
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-5);
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-3);
+      }
+
+      .nav-list {
+        gap: var(--space-3);
+      }
+
+      .header-cta {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero {
+        padding: var(--space-6) 0 var(--space-5);
+      }
+
+      .service-strip {
+        grid-template-columns: 30px 1fr;
+      }
+
+      .service-num {
+        font-size: 13px;
+      }
+
+      .section {
+        padding: var(--space-6) 0;
+      }
+
+      .section-head h2 {
+        font-size: 32px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="#" class="logo" aria-label="Wesbou Construction home">
+        WESBOU<span>.</span> <small>Construction / Phalaborwa</small>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="#work">What we build</a></li>
+          <li><a href="#record">Track record</a></li>
+          <li><a href="#approach">How we work</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="#contact" class="header-cta">Request a site visit</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="wrap hero-content">
+        <div>
+          <span class="tag">Phalaborwa · Limpopo · Since 2009</span>
+          <h1 id="hero-heading">
+            BUILT FOR <em>PHALABORWA’S</em> GROUND.
+          </h1>
+          <p class="hero-sub">
+            Wesbou Construction handles residential builds, commercial renovations, and mining-support
+            infrastructure across the Ba-Phalaborwa area. We work with the heat, the soil, and the
+            schedules this town actually runs on — not a textbook.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn">Get a building quote</a>
+            <a href="#work" class="btn-outline btn">See what we build</a>
+          </div>
+        </div>
+
+        <aside class="hero-side" aria-label="Quick company details">
+          <dl>
+            <div>
+              <dt>Based in</dt>
+              <dd>Phalaborwa, 1390<br>Mopani District, Limpopo</dd>
+            </div>
+            <div>
+              <dt>Site hours</dt>
+              <dd>Mon–Fri 07:00–17:00<br>Sat 08:00–13:00</dd>
+            </div>
+            <div>
+              <dt>Talk to the team</dt>
+              <dd><a href="tel:+27157810231">+27 (0)15 781 0231</a></dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <!-- BAND -->
+    <div class="band" aria-hidden="true">
+      <div class="band-inner">
+        <span>Residential builds</span>
+        <span>Commercial renovations</span>
+        <span>Concrete works</span>
+        <span>Roofing &amp; cladding</span>
+        <span>Mining-support infrastructure</span>
+        <span>Residential builds</span>
+        <span>Commercial renovations</span>
+        <span>Concrete works</span>
+        <span>Roofing &amp; cladding</span>
+        <span>Mining-support infrastructure</span>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section class="section services" id="work" aria-labelledby="work-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="tag">01 / What we build</span>
+            <h2 id="work-heading">From foundation trench to final coat.</h2>
+          </div>
+          <p>
+            We keep the scope practical: the kind of work Phalaborwa property owners and site managers
+            actually need, done by a crew that knows the difference between a Phalaborwa clay layer and
+            a sand bed.
+          </p>
+        </div>
+
+        <div class="service-strip" role="list">
+          <div class="service-item" role="listitem">
+            <div class="service-num">01</div>
+            <div class="service-title">Residential builds &amp; extensions</div>
+            <div class="service-desc">
+              New homes, granny flats, and room additions in Phalaborwa Extensions and surrounding
+              suburbs. We handle setting out, foundation work, brickwork, and finishing as one
+              coordinated package.
+            </div>
+          </div>
+
+          <div class="service-item" role="listitem">
+            <div class="service-num">02</div>
+            <div class="service-title">Commercial renovations</div>
+            <div class="service-desc">
+              Shopfront changes, office fit-outs, and warehouse upgrades for businesses along the
+              R71 corridor and the Phalaborwa industrial area. We phase work to keep your doors open
+              while we’re on site.
+            </div>
+          </div>
+
+          <div class="service-item" role="listitem">
+            <div class="service-num">03</div>
+            <div class="service-title">Concrete &amp; structural works</div>
+            <div class="service-desc">
+              Slabs, retaining walls, foundations, and reinforced concrete for mining-support
+              structures. We pour early, cure properly, and account for the temperature swings that
+              catch out crews from outside the Lowveld.
+            </div>
+          </div>
+
+          <div class="service-item" role="listitem">
+            <div class="service-num">04</div>
+            <div class="service-title">Roofing, cladding &amp; waterproofing</div>
+            <div class="service-desc">
+              IBR and corrugated roof replacement, asbestos removal coordination, and flat-roof
+              waterproofing for older Phalaborwa properties. Practical repairs that hold through the
+              rainy season, not quick patches.
+            </div>
+          </div>
+
+          <div class="service-item" role="listitem">
+            <div class="service-num">05</div>
+            <div class="service-title">Paving, kerbing &amp; site clearance</div>
+            <div class="service-desc">
+              Driveways, parking areas, and access roads for homes, guesthouses, and small industrial
+              yards. We grade, compact, and edge properly so the surface still looks right after a
+              few summers.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROOF / STATS -->
+    <section class="section proof" id="record" aria-labelledby="record-heading">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="tag">02 / Track record</span>
+            <h2 id="record-heading">Measured in repeat work, not promises.</h2>
+          </div>
+          <p>
+            Most of our projects come from referrals or clients who bring us back for the next phase.
+            That is the only construction record we trust.
+          </p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat">
+            <strong>15+</strong>
+            <span>Years working in the Ba-Phalaborwa area</span>
+          </div>
+          <div class="stat">
+            <strong>80+</strong>
+            <span>Completed builds, renovations, and site works</span>
+          </div>
+          <div class="stat">
+            <strong>60%</strong>
+            <span>Of new work comes from repeat clients or referrals</span>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <blockquote>
+            “They sorted out the drainage on the lower side of our yard before pouring the slab.
+            Two rainy seasons later, the paving is still level and the walls are dry. That is what
+            we wanted.”
+          </blockquote>
+          <cite>— Property owner, Phalaborwa Extension 7</cite>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT / PROCESS -->
+    <section class="section about" id="approach" aria-labelledby="approach-heading">
+      <div class="wrap about-grid">
+        <div class="about-text">
+          <span class="tag">03 / How we work</span>
+          <h2 id="approach-heading">Local crew. Direct answers. No vanishing act.</h2>
+          <p>
+            Wesbou Construction is a Phalaborwa-based contractor working across the Mopani district.
+            We are not a Johannesburg company with a satellite office — the person who quotes your
+            job is the same person you can phone when the site is open.
+          </p>
+          <p>
+            That matters here. Phalaborwa’s ground conditions, summer heat, and the pace of
+            mining-linked projects do not reward contractors who learn on the job. We price for the
+            work we can actually staff and finish, and we say so when a scope is outside what we do
+            well.
+          </p>
+          <p>
+            If you need a straight answer on a build, a renovation, or a concrete structure, ask for
+            a site visit. We will walk the property, point out what we see, and give you a written
+            scope before any work starts.
+          </p>
+        </div>
+
+        <ol class="process-list">
+          <li>
+            <div>
+              <h3>Walk the site</h3>
+              <p>
+                We meet you on the property, check access, levels, and existing services, and flag
+                anything that will change the cost before you commit.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Written scope &amp; quote</h3>
+              <p>
+                You get a line-item breakdown: what is included, what is excluded, and when each
+                phase will happen. No lump-sum guesswork.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Build in phases</h3>
+              <p>
+                We sequence the work around weather, material lead times, and your operating hours.
+                You get a single point of contact on site.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Handover &amp; snag list</h3>
+              <p>
+                Before we call a job done, we walk it with you, list the snags, and close them out.
+                The final payment follows your sign-off, not ours.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact" aria-labelledby="contact-heading">
+      <div class="wrap contact-grid">
+        <div class="contact-info">
+          <span class="tag">04 / Contact</span>
+          <h2 id="contact-heading">Tell us what you’re building.</h2>
+          <p style="max-width: 46ch; margin-top: var(--space-2);">
+            Phone the office or send a short description of the work. If it is a site visit, we
+            will come out and look at the property before quoting.
+          </p>
+
+          <dl class="contact-details">
+            <div>
+              <dt>Office</dt>
+              <dd><a href="tel:+27157810231">+27 (0)15 781 0231</a></dd>
+            </div>
+            <div>
+              <dt>Email</dt>
+              <dd><a href="mailto:quotes@wesbouconstruction.co.za">quotes@wesbouconstruction.co.za</a></dd>
+            </div>
+            <div>
+              <dt>Base</dt>
+              <dd>Phalaborwa, 1390<br>Mopani District, Limpopo</dd>
+            </div>
+            <div>
+              <dt>Site hours</dt>
+              <dd>Mon–Fri 07:00–17:00<br>Sat 08:00–13:00</dd>
+            </div>
+          </dl>
+        </div>
+
+        <form class="contact-form" action="#" method="post" aria-label="Request a quote">
+          <div>
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+          </div>
+          <div>
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+          </div>
+          <div>
+            <label for="project">What needs building or fixing?</label>
+            <textarea id="project" name="project" placeholder="e.g. A 60 m² flatlet with a concrete slab, or a shopfront renovation on the main road." required></textarea>
+          </div>
+          <button type="submit" class="btn">Send the brief</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">WESBOU<span>.</span></div>
+          <p>
+            Construction and renovation contractor based in Phalaborwa, Limpopo. Residential builds,
+            commercial fit-outs, concrete works, and practical site infrastructure for the Mopani
+            district.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="#work">What we build</a></li>
+            <li><a href="#record">Track record</a></li>
+            <li><a href="#approach">How we work</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Find us</h4>
+          <ul>
+            <li><a href="https://www.facebook.com/wesbouconstruction/" target="_blank" rel="noopener">Facebook page</a></li>
+            <li><a href="tel:+27157810231">+27 (0)15 781 0231</a></li>
+            <li><a href="mailto:quotes@wesbouconstruction.co.za">quotes@wesbouconstruction.co.za</a></li>
+            <li>Phalaborwa, 1390</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Wesbou Construction. Phalaborwa, Limpopo.</span>
+        <span>Site built for real site conditions.</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
